@@ -1,0 +1,13 @@
+INSTALL REQUIRED LIBRARIES
+
+python -m pip install pandas scikit-learn mlflow 
+
+
+START THE MLFLOW SERVER
+
+mlflow server --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000
+
+Open the following address in your browser:
+
+http://127.0.0.1:5000
+

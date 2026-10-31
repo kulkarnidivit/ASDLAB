@@ -1,0 +1,190 @@
+Experiment 4 — Basic Git Operations
+Aim: To initialize a Git repository, configure username and email, create a file, stage and commit changes, and demonstrate git status, git diff, and git log.
+
+
+
+# EXPERIMENT 4: BASIC GIT OPERATIONS
+
+# 1. Create experiment folder
+mkdir ASD_EXP4
+cd ASD_EXP4
+
+# 2. Initialize Git repository
+git init
+
+# 3. Configure username and email locally
+git config user.name "Student"
+git config user.email "student@example.com"
+
+# 4. Create a file
+"Hello, this is my Git Experiment 4" | Out-File -Encoding ascii README.txt
+
+# 5. Check repository status
+git status
+
+# 6. Stage the file
+git add README.txt
+
+# 7. Check status after staging
+git status
+
+# 8. Commit the file
+git commit -m "Initial commit"
+
+# 9. Modify the file
+"Git tracks changes in files" | Add-Content README.txt
+
+# 10. Display changes before staging
+git diff
+
+# 11. Stage the modified file
+git add README.txt
+
+# 12. Commit the modification
+git commit -m "Update README file"
+
+# 13. Display commit history
+git log --oneline
+
+# 14. Check final repository status
+git status
+
+
+
+
+Experiment 5 — Git Branching and Merging (Windows PC)
+Aim: To create a Git repository, create a new branch, make changes, commit them, switch branches, and merge changes into the main branch.
+
+
+
+
+
+# EXPERIMENT 5: GIT BRANCHING AND MERGING
+
+# 1. Create experiment folder
+mkdir ASD_EXP5
+cd ASD_EXP5
+
+# 2. Initialize Git repository
+git init
+git branch -M main
+
+# 3. Configure username and email locally
+git config user.name "Student"
+git config user.email "student@example.com"
+
+# 4. Create a file on main branch
+"Original project" | Out-File -Encoding ascii project.txt
+
+# 5. Stage and commit the file
+git add project.txt
+git commit -m "Initial commit"
+
+# 6. Create and switch to feature branch
+git switch -c feature
+
+# 7. Modify the file on feature branch
+"New feature added" | Add-Content project.txt
+
+# 8. Stage and commit changes
+git add project.txt
+git commit -m "Add new feature"
+
+# 9. Display all branches
+git branch
+
+# 10. Switch back to main branch
+git switch main
+
+# 11. Merge feature branch into main
+git merge feature
+
+# 12. Display final file content
+Get-Content project.txt
+
+# 13. Display commit history
+git log --oneline --graph --all
+
+# 14. Check final repository status
+git status
+
+
+
+
+
+
+Here is Experiment 6 — complete GitHub commands in one copy-paste block for a Windows college PC using VS Code PowerShell.
+
+Before running: Create an empty GitHub repository named ASD_EXP6, sign in if prompted, and replace YOUR_USERNAME in the code with your GitHub username.
+
+
+# EXPERIMENT 6: GIT AND GITHUB REMOTE OPERATIONS
+
+# 1. Create experiment folder
+New-Item -ItemType Directory -Name ASD_EXP6
+Set-Location ASD_EXP6
+
+# 2. Initialize Git repository
+git init
+git branch -M main
+
+# 3. Configure Git username and email
+git config user.name "Student"
+git config user.email "student@example.com"
+
+# 4. Create a file
+"GitHub remote operations experiment" | Set-Content README.txt
+
+# 5. Stage and commit changes
+git add README.txt
+git commit -m "Initial commit"
+
+# 6. Connect local repository to GitHub
+git remote add origin https://github.com/YOUR_USERNAME/ASD_EXP6.git
+
+# 7. Verify remote repository
+git remote -v
+
+# 8. Push initial commit to GitHub
+git push -u origin main
+
+# 9. Modify the file
+"Changes pushed to GitHub" | Add-Content README.txt
+
+# 10. Stage and commit the modification
+git add README.txt
+git commit -m "Update README"
+
+# 11. Push updated changes
+git push origin main
+
+# 12. Fetch remote changes
+git fetch origin
+
+# 13. Pull remote changes
+git pull origin main
+
+# 14. Display commit history
+git log --oneline
+
+# 15. Check repository status
+git status
+
+# 16. Return to parent directory
+Set-Location ..
+
+# 17. Clone the GitHub repository
+git clone https://github.com/YOUR_USERNAME/ASD_EXP6.git ASD_EXP6_CLONE
+
+# 18. Enter cloned repository
+Set-Location ASD_EXP6_CLONE
+
+# 19. Verify cloned repository
+git remote -v
+git log --oneline
+git status
+
+
+
+
+
