@@ -1,0 +1,132 @@
+# EXPERIMENT 2: GIT AND JIRA INTEGRATION
+
+## Aim
+To create a Git repository, add and commit source code using a Jira issue key, push the code to GitHub, and integrate GitHub with Jira.
+
+## Software Requirements
+1. Windows PC
+2. Visual Studio Code
+3. Git
+4. GitHub account
+5. Jira account
+
+## Step 1: Check Git Installation
+
+Open VS Code → Terminal → New Terminal (PowerShell).
+
+```powershell
+git --version
+```
+
+## Step 2: Clone the GitHub Repository
+
+```powershell
+cd $HOME\Desktop
+git clone https://github.com/kulkarnidivit/online-book-store-asd.git
+cd online-book-store-asd
+```
+
+If the folder already exists, use a different folder name:
+
+```powershell
+cd $HOME\Desktop
+git clone https://github.com/kulkarnidivit/online-book-store-asd.git online-book-store-asd-exp2
+cd online-book-store-asd-exp2
+```
+
+## Step 3: Configure Git Identity
+
+```powershell
+git config user.name "Divit Kulkarni"
+git config user.email "kulkarnidivit@gmail.com"
+
+git config user.name
+git config user.email
+```
+
+## Step 4: Create the Source Code
+
+Run this PowerShell command to create the Online Book Store login page:
+
+```powershell
+@'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Store - Login</title>
+</head>
+<body>
+    <h1>Online Book Store</h1>
+    <h2>User Login</h2>
+
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+'@ | Set-Content -Encoding utf8 index.html
+```
+
+## Step 5: Add and Commit the Code
+
+```powershell
+git status
+git add index.html
+git commit -m "OBS-3 Add user login homepage"
+git log -1 --oneline
+```
+
+The commit message contains the Jira issue key OBS-3.
+
+## Step 6: Push the Code to GitHub
+
+```powershell
+git push origin main
+```
+
+If Git reports a non-fast-forward error, run:
+
+```powershell
+git pull --no-rebase origin main
+git push origin main
+```
+
+If a merge conflict occurs, resolve it before pushing. Do not use `git push --force`.
+
+GitHub repository:
+https://github.com/kulkarnidivit/online-book-store-asd
+
+## Step 7: Integrate GitHub with Jira
+
+1. Open the Jira project.
+2. Open issue OBS-3 (User Login).
+3. Check the Development section.
+4. Check whether the commit appears under commits or linked development information.
+
+The GitHub repository must be accessible to the Jira integration. If it does not appear, the Jira administrator or GitHub account/organisation owner may need to configure repository access. Do not disconnect an existing college organisation.
+
+## Step 8: Verify the Repository
+
+```powershell
+git status
+git log -1 --oneline
+git remote -v
+```
+
+Expected results:
+- The working tree is clean if no uncommitted changes remain.
+- The latest commit contains the OBS-3 issue key.
+- The remote points to the GitHub repository.
+
+## Result
+The source code was added to a Git repository, committed with the Jira issue key OBS-3, and pushed to GitHub. The Jira Development section can display linked commits when the GitHub integration and repository permissions are correctly configured.
