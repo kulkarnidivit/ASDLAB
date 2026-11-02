@@ -1,0 +1,158 @@
+EXPERIMENT 3: DOCKERIZE A WEB APPLICATION
+
+Aim
+
+To create a Dockerfile for a sample web application, build a Docker image, run a container, and test the application in a web browser.
+
+Step 1: Check Docker Installation
+
+Open Windows PowerShell.
+
+# Check Docker version
+docker --version
+# Check whether Docker is running
+docker info
+
+Comment: Docker Desktop must be installed and running.
+
+Step 2: Create the Project Folder
+
+# Create the project folder on the Desktop
+New-Item -ItemType Directory -Force "$HOME\Desktop\DockerExp3"
+# Enter the project folder
+cd "$HOME\Desktop\DockerExp3"
+
+Comment: This folder will contain the HTML file and Dockerfile.
+
+Step 3: Create the Web Application
+
+Copy and paste the complete command below into PowerShell.
+
+# Create the HTML webpage
+@'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Experiment</title>
+</head>
+<body>
+    <h1>Hello from Docker!</h1>
+    <p>My web application is running inside a Docker container.</p>
+</body>
+</html>
+'@ | Set-Content -Encoding utf8 index.html
+
+Comment: The index.html file contains the webpage that will be displayed in the browser.
+
+Step 4: Create the Dockerfile
+
+# Create the Dockerfile
+@'
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+'@ | Set-Content -Encoding ascii Dockerfile
+
+Dockerfile instructions:
+
+* FROM nginx:alpine — Uses the Nginx base image.
+* COPY index.html /usr/share/nginx/html/index.html — Copies the webpage into the web server directory.
+* EXPOSE 80 — Documents the container port used by Nginx.
+
+Step 5: Build the Docker Image
+
+# Build an image named sample-web-app
+docker build -t sample-web-app .
+# Verify that the image exists
+docker images
+
+Comment: The image packages the webpage with the Nginx web server. The dot (.) specifies the current directory as the build context.
+
+Step 6: Run the Docker Container
+
+# Run the container in the background
+# Map host port 8080 to container port 80
+docker run -d --name sample-web-container -p 8080:80 sample-web-app
+
+Comment:
+
+* -d runs the container in the background.
+* --name assigns a name to the container.
+* -p 8080:80 maps port 8080 on the PC to port 80 inside the container.
+
+Step 7: Verify the Container
+
+# Display running containers
+docker ps
+# Display container logs
+docker logs sample-web-container
+
+Comment: Check that the container is running without errors.
+
+Step 8: Test the Application
+
+Open your web browser and enter:
+
+http://localhost:8080
+
+Expected output:
+
+Hello from Docker!
+
+My web application is running inside a Docker container.
+
+You can also test it in PowerShell:
+
+# Check the HTTP response status
+(Invoke-WebRequest http://localhost:8080).StatusCode
+
+Expected status code: 200
+
+Comment: Status code 200 indicates that the web server responded successfully.
+
+Step 9: Stop and Remove the Container (Optional)
+
+# Stop the container
+docker stop sample-web-container
+# Remove the container
+docker rm sample-web-container
+# Remove the Docker image
+docker rmi sample-web-app
+
+Comment: Run these commands after testing if you no longer need the container or image.
+
+Result
+
+Successfully created a Dockerfile, built a Docker image, ran a container, and tested the sample web application in a browser.
+
+Important Viva Questions
+
+Q1. What is Docker?
+Answer: Docker is a platform used to package and run applications inside containers.
+
+Q2. What is a Docker image?
+Answer: A Docker image is a template used to create containers.
+
+Q3. What is a Docker container?
+Answer: A container is a running instance of a Docker image.
+
+Q4. What is a Dockerfile?
+Answer: A Dockerfile contains instructions for building a Docker image.
+
+Q5. What does FROM do?
+Answer: It specifies the base image.
+
+Q6. What does COPY do?
+Answer: It copies files into the image.
+
+Q7. What does EXPOSE 80 mean?
+Answer: It documents the port used by the web server inside the container.
+
+Q8. What does -p 8080:80 do?
+Answer: It maps host port 8080 to container port 80.
+
+Q9. What does docker ps display?
+Answer: It displays running containers.
+
+Q10. Why is Docker used?
+Answer: Docker helps applications run consistently across different environments.
